@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Python Flask Starter Application</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/stylesheets/style.css">
+      <!-- Bootstrap -->
+        <link rel="stylesheet" href="vendor/css/bootstrap.min.css">
+  </head>
+
+  <body>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="vendor/js/jquery-3.1.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="vendor/js/bootstrap.min.js"></script>
+
+  {% from "_formhelpers.html" import render_field %}
+    <form method=post>
+      <dl>
+          {{ form.csrf_token }}
+          {{ render_field(form.surfaceTempField) }}
+          {{ render_field(form.seaWaterTempField) }}
+          {{ render_field(form.precipitationField) }}
+          {{ render_field(form.cloudCoverageField) }}
+          {{ render_field(form.sunDurationField) }}
+          {{ render_field(form.snowThicknessField) }}
+      </dl>
+      <p><input type=submit value=Register>
+    </form>
+
+    <table>
+      <tr>
+        <td style= "width:30%;">
+          <img class = "newappIcon" src="static/images/newapp-icon.png" alt="newapp"/>
+        </td>
+        <h1>SETTINGS</h1>
+
+        <p>Thanks for creating a <span class = "blue">Python3.5 <a href = "http://flask.pocoo.org/">Flask</a> Starter Application</span></p>
+      </tr>
+    </table>
+  </body>
+
+
+</html>
