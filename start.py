@@ -1,36 +1,49 @@
 from flask import *
 from Forms import SettingsForm
 import utils as utils
+import os
 
 app = Flask(__name__)
+app.secret_key = "asdxccxvfddfgdfg"
+utils.write_file("hello.txt", "hello")
 
 @app.route("/")
 def hello():
-    return app.send_static_file('index.html')
+    utils.write_file("hello.txt", "hello")
+    return render_template('index.html')
+    #return app.send_static_file('index.html')
 
 @app.route("/settings", methods=["GET", "POST"])
 def settings():
     form = SettingsForm(request.form)
-    if request.method == 'POST' and form.validate():
-        surfaceTempField = form.surfaceTempField
-        seaWaterTempField = form.seaWaterTempField
-        precipitationField = form.precipitationField
-        cloudCoverageField = form.cloudCoverageField
-        sunDurationField = form.sunDurationField
-        snowThickness = form.snowThickness
+    print("inside settings call")
+    if request.method == "POST":#form.validate():#form.validate_on_submit(): # == 'POST': #and form.validate():
+        print("inside post request")
+        surfaceTempField = form.surfaceTempField.data
+        seaWaterTempField = form.seaWaterTempField.data
+        precipitationField = form.precipitationField.data
+        cloudCoverageField = form.cloudCoverageField.data
+        sunDurationField = form.sunDurationField.data
+        snowThicknessField = form.snowThicknessField.data
 
-        settingsString = "" +surfaceTempField + "\n"
-        settingsString += "" + seaWaterTempField + "\n"
-        settingsString += "" + precipitationField + "\n"
-        settingsString += "" + cloudCoverageField + "\n"
-        settingsString += "" + sunDurationField + "\n"
-        settingsString += "" + snowThickness
+        settingsString = "" +str(surfaceTempField) + "\n"
+        settingsString += "" + str(seaWaterTempField) + "\n"
+        settingsString += "" + str(precipitationField) + "\n"
+        settingsString += "" + str(cloudCoverageField) + "\n"
+        settingsString += "" + str(sunDurationField) + "\n"
+        settingsString += "" + str(snowThicknessField)
+        print(settingsString)
 
-        utils.write_file("settings.txt", settingsString)
+        scriptpath = os.path.dirname(__file__)
+        filename = os.path.join(scriptpath, 'settings.txt')
+
+        utils.write_file(filename, settingsString)
         flash("Settings saved.")
+        return render_template('index.html')
 
-    render_template('index.html')
+    print("render settings")
+    return render_template('settings.html', form=form)
     #return to home here
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

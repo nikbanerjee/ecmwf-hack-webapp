@@ -3,9 +3,9 @@ from wtforms.validators import DataRequired, Length
 
 class SettingsForm(Form):
     #surfaceTemp = IntegerField(widget=NumberInput())
-    surfaceTempField = IntegerField('Surface Temperature (C)', [validators.data_required])
-    seaWaterTempField = IntegerField('Sea Water Temperature (C)', [validators.data_required])
-    precipitationField = IntegerField('Precipitation (mm)', [validators.data_required])
-    cloudCoverageField = IntegerField('Cloud coverage', [validators.data_required])
-    sunDurationField = IntegerField('Sun duration (time)', [validators.data_required])
-    snowThickness = IntegerField('Snow Thickness (cm)', [validators.data_required])
+    surfaceTempField = IntegerField('Surface Temperature (C)', [validators.DataRequired()])
+    seaWaterTempField = IntegerField('Sea Water Temperature (C)', [validators.DataRequired()])
+    precipitationField = IntegerField('Precipitation (mm)', [validators.DataRequired()])
+    cloudCoverageField = IntegerField('Cloud coverage', [validators.DataRequired()])
+    sunDurationField = IntegerField('Sun duration (time)', [validators.DataRequired()])
+    snowThicknessField = IntegerField('Snow Thickness (cm)', [validators.DataRequired()])

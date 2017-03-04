@@ -15,7 +15,7 @@ import re
 import glob
 
 def write_file(file, data):
-    with open(file, 'a') as outfile:
+    with open(file, 'r+') as outfile:
         outfile.write(data)
 
 def write_file_noappend(file, data):
