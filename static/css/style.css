@@ -9,3 +9,8 @@ body {
 footer {
     margin: 50px 0;
 }
+
+.centered-col {
+    float: none;
+    margin: 0 auto;
+}
