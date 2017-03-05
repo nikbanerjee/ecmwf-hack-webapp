@@ -85,6 +85,13 @@ function get_destination() {
             $("#location").text(dest["location"]);
             $("#dest-image").attr("src", dest["image"]);
             $("#description").attr("src", dest["description"]);
+            // table values
+            $("#temp_val").text(dest["metrics"]["surface_temp"]);
+            $("#sea_temp_val").text(dest["metrics"]["sea_temp"]);
+            $("#cloud_coverage_val").text(dest["metrics"]["cloud_coverage"]);
+            $("#snow_thickness_val").text(dest["metrics"]["snow_thickness"]);
+            
+            
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log("Failed. " + textStatus + ": " + errorThrown)

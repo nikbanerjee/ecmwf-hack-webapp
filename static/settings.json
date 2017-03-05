@@ -1,6 +1,6 @@
 {
-    "cloudCoverageField": "Cloudy",
+    "cloudCoverageField": "",
     "seaWaterTempField": "",
     "snowThicknessField": "",
-    "surfaceTempField": "Warm"
+    "surfaceTempField": ""
 }

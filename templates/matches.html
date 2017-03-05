@@ -54,12 +54,12 @@
 
           <!-- Portfolio Item Row -->
           <div class="row">
-            <div class="col-md-6 centered-col">
-              <table class="centered-col">
-                <th>Matches</th>
+            <div class="col-md-10 centered-col">
+              <table class="centered-col table table-striped">
+                <th class="matches-title">Matches</th>
                 {% for match in json_data %}
                   <tr class="match-row">
-                     <td>{{match.location}}</td>
+                     <td class="match-cell">{{match.location}}</td>
                   </tr>
                 {% endfor %}
                 </table>
