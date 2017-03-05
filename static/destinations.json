@@ -48,7 +48,7 @@
         "description": "",
         "image": "http://blog.parkinn.com/wp-content/uploads/sites/7/2016/01/BP2-BUHPD-Creative-Labs-Shutterstock-Bucharest-is-an-up-and-coming-city-filled-to-the-brim-with-exciting-sights-and-activities.-Check-out-our-top-5-list.jpg",
         "location": "Bucharest",
-        "matched": "false",
+        "matched": "true",
         "metrics": {
             "cloud_coverage": "0.11",
             "precipitation": "0.00",
