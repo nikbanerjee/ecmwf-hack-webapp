@@ -59,17 +59,28 @@ $(document).ready(function() {
 });
 
 function get_destination() {
+    var ajax_url = "/destinations?"
+    var settings = ["cloud_coverage", "sea_temp", "snow_thickness", "surface_temp"]
+    for (index in settings) {
+        cookie = getCookie(settings[index])
+        if (cookie != "") {
+            ajax_url += (settings[index] + "=" + cookie + "&")
+        }
+    }
     $.ajax({
-        url : "/destinations",
+        url : ajax_url,
         type: "GET",
         dataType: "json",
         success: function(data, textStatus, jqXHR) {
             var position = getCookie("position")
-            if(typeof position != 'undefined') {
+            if(typeof position != 'undefined' && position < data.length) {
                 var dest = data[position]
             } else {
                 document.cookie = "position=0";
                 var dest = data[0]
+            }
+            if (typeof getCookie("data_length") == 'undefined') {
+                document.cookie = "data_length=" + data.length;
             }
             $("#location").text(dest["location"]);
             $("#dest-image").attr("src", dest["image"]);
@@ -79,10 +90,6 @@ function get_destination() {
             console.log("Failed. " + textStatus + ": " + errorThrown)
         }
     });
-    
-    if (typeof getCookie("data_length") == 'undefined') {
-        document.cookie = "data_length=" + lines.length;
-    }
 }
 
 
@@ -91,7 +98,26 @@ function startup() {
         document.cookie = "position=0";
         document.cookie = "startup_complete=true";
     }
+    store_settings_as_cookies();
     get_destination();
+    
+}
+
+function store_settings_as_cookies() {
+    $.ajax({
+        url : "/settings?format=json",
+        type: "GET",
+        dataType: "json",
+        success: function(data, textStatus, jqXHR) {
+            document.cookie = "cloud_coverage=" + data["cloudCoverageField"]
+            document.cookie = "sea_temp=" + data["seaWaterTempField"]
+            document.cookie = "snow_thickness=" + data["snowThicknessField"]
+            document.cookie = "surface_temp=" + data["surfaceTempField"]
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log("Failed. " + textStatus + ": " + errorThrown)
+        }
+    });
 }
 
     
@@ -104,6 +130,7 @@ function increment_position() {
         }
         document.cookie = "position=" + new_position
     }
+    
 }
 
 function getCookie(name) {

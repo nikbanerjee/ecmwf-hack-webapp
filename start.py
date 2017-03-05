@@ -8,6 +8,33 @@ import os
 app = Flask(__name__)
 app.secret_key = "asdxccxvfddfgdfg"
 
+selection_criteria = {
+    "surface_temp": {
+        "Cold": [-60, 5],
+        "Average": [5, 15],
+        "Warm": [15, 25],
+        "Hot": [25, 60]
+    },
+    "cloud_coverage": {
+        "ClearSkies": [0, 0.20],
+        "Cloudy": [0.20, 0.40],
+        "VeryCloudy": [0.40, 0.60],
+        "Overcast": [0.60, 1.00]
+    },
+    "sea_temp": {
+        "Cold": [-60, 2],
+        "Average": [2, 10],
+        "Warm": [10, 25],
+        "Hot": [25, 60]
+    },
+    "snow_thickness": {
+        "NoSnow": [0, 0],
+        "LightSnow": [0, 0.2],
+        "HeavySnow": [0.2, 0.8],
+        "Snowstorm": [0.8, 1],
+    }
+}
+
 
 @app.route("/")
 def start():
@@ -48,15 +75,28 @@ def destination():
             json.dump(dest_json, outfile, indent=4, sort_keys=True)
         return redirect("/")
     
-    precipitation = request.args.get('rainfall')
-    temp = request.args.get('heat')
-    snow_depth = request.args.get('snowfall')
     with open('static/destinations.json') as data_file:    
         data = json.load(data_file)
     
-        
+    res = list()
+    params_active = False
+    params = ['surface_temp', 'sea_temp', 'cloud_coverage', 'snow_thickness']
+    for param in params:
+        arg = request.args.get(param)
+        if arg is not None:
+            params_active = True
+            res += get_destinations_matching_criteria(data, param, arg)
     
-    return jsonify(data)
+    # Remove duplicates    
+    final_res = list()
+    for dest in res:
+        if dest["location"] not in final_res:
+            final_res.append(dest)
+            
+    if not params_active:
+        return jsonify(data)
+    else:
+        return jsonify(final_res)
     
     
 @app.route("/destinations/<int:id>", methods=["POST"])
@@ -77,17 +117,13 @@ def settings():
     if request.method == "POST":#form.validate():#form.validate_on_submit(): # == 'POST': #and form.validate():
         surfaceTempField = form.surfaceTempField.data
         seaWaterTempField = form.seaWaterTempField.data
-        precipitationField = form.precipitationField.data
         cloudCoverageField = form.cloudCoverageField.data
-        sunDurationField = form.sunDurationField.data
         snowThicknessField = form.snowThicknessField.data
         
         settings_hash = {
             "surfaceTempField": str(surfaceTempField),
             "seaWaterTempField": str(seaWaterTempField),
-            "precipitationField": str(precipitationField),
             "cloudCoverageField": str(cloudCoverageField),
-            "sunDurationField": str(sunDurationField),
             "snowThicknessField": str(snowThicknessField)
         }
         
@@ -104,7 +140,14 @@ def settings():
         return jsonify(data)
     else:
         return render_template('settings.html', form=form)
+
     
+def get_destinations_matching_criteria(data, category, criteria):
+    res = []
+    for d in data:
+        if (float(d["metrics"][category]) > float(selection_criteria[category][criteria][0]) and (float(d["metrics"][category]) < float(selection_criteria[category][criteria][1]))):
+            res.append(d)
+    return res
     
 
 if __name__ == "__main__":
