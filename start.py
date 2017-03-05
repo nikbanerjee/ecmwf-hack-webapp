@@ -1,6 +1,7 @@
 from flask import *
 from Forms import SettingsForm
 import utils as utils 
+from shutil import copy
 import json
 import os
 
@@ -24,8 +25,12 @@ def match():
     
     with open('static/matches.json') as data_file:    
         data = json.load(data_file)
-    return jsonify(data)
-
+    data_format = request.args.get('format')
+    if data_format == "json":
+        return jsonify(data)
+    else:
+        return render_template('matches.html', json_data=data)
+    
 
 @app.route("/destinations", methods=["GET", "POST"])
 def destination():
@@ -87,4 +92,5 @@ def settings():
 if __name__ == "__main__":
     with open("static/matches.json", mode='w', encoding='utf-8') as f:
         json.dump([], f)
+#    copy("data/destination_base.json", "static/destinations.json")
     app.run(debug=True)

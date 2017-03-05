@@ -1,8 +1,11 @@
 [
     {
-        "location": "London"
+        "location": "Copenhagen"
     },
     {
-        "location": "Paris"
+        "location": "Oslo"
+    },
+    {
+        "location": "London"
     }
 ]
