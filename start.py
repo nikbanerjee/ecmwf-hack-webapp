@@ -8,6 +8,7 @@ import os
 app = Flask(__name__)
 app.secret_key = "asdxccxvfddfgdfg"
 
+
 @app.route("/")
 def start():
     with open('static/settings.json') as data_file:    
@@ -52,6 +53,8 @@ def destination():
     snow_depth = request.args.get('snowfall')
     with open('static/destinations.json') as data_file:    
         data = json.load(data_file)
+    
+        
     
     return jsonify(data)
     
@@ -101,7 +104,7 @@ def settings():
         return jsonify(data)
     else:
         return render_template('settings.html', form=form)
-
+    
     
 
 if __name__ == "__main__":
