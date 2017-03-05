@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="static/css/style.css">
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="static/js/jquery-3.1.1.min.js"></script>
+        <script src="static/js/parse_destinations.js"></script>
     </head>
 
     <body>
@@ -52,20 +53,21 @@
             <!-- Portfolio Item Row -->
             <div class="row">
                 <div class="col-md-2" style="height:200px;width:200px;">
-                    <input type="image" src="https://image.flaticon.com/icons/png/512/60/60775.png" style="height:100%;width:100%;" />
+                    <img id="skip" src="https://image.flaticon.com/icons/png/512/60/60775.png" style="height:100%;width:100%;" />
                 </div>
                 <div class="col-md-6">
-                    <img class="img-responsive centered-col" src="http://placehold.it/750x500" alt="">
+                    <img id="dest-image" class="img-responsive centered-col" alt="">
                 </div>
                 <div class="col-md-2" style="height:200px;width:200px;">
-                    <input type="image" src="https://image.flaticon.com/icons/svg/60/60758.svg" style="height:100%;width:100%;" />
+                    <img id="match" src="https://image.flaticon.com/icons/svg/60/60758.svg" style="height:100%;width:100%;" />
                 </div>
             </div>
             <!-- /.row -->
             <!-- Portfolio Item Row -->
             <div class="row">
                 <div class="col-md-6 centered-col">
-                    <h3>Project Description</h3>
+                    <h3 id="location"></h3>
+                    <p id="description"></p>
                 </div>
             </div>
             
