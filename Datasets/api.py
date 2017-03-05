@@ -25,9 +25,9 @@ server.retrieve({
     '''
 
 #london
-lats = ["51.507351", "55.676097", "59.913869", "44.426767"]
-longs = ["-0.127758", "12.568337", "10.752245", "26.102538"]
-filenames = ["London", "Copenhagen", "Oslo", "Bucharest"]
+lats = ["51.507351", "55.676097", "59.913869", "44.426767", "50.850340", "50.110922", "46.204391", "40.416775", "38.722252", "45.764043", "41.902783", "47.497912","52.229676"]
+longs = ["-0.127758", "12.568337", "10.752245", "26.102538", "4.351710", "8.682127", "6.143158", "-3.703790", "-9.139337", "4.835659", "12.496366", "19.040235", "21.012229"]
+filenames = ["London", "Copenhagen", "Oslo", "Bucharest", "Brussels", "Frankfurt", "Geneva", "Madrid", "Lisbon", "Lyon", "Rome", "Budapest", "Warsaw"]
 
 def getFiles(filename, lat, long):
     from ecmwfapi import ECMWFDataServer
