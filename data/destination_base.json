@@ -1,0 +1,62 @@
+[
+    {
+        "location": "Copenhagen",
+        "image": "https://ems2016.org/wp-content/uploads/2015/04/copenhagen_featured.jpg",
+        "description": "",
+        "metrics": {
+            "surface_temp": "",
+            "sea_temp": "",
+            "precipitation": "",
+            "sun_duration": "",
+            "snow_thickness": "",
+            "cloud_coverage": ""
+        },
+        "matched": "false",
+        "seen": "false"
+    },
+    {
+        "location": "Paris",
+        "image": "http://www.parisattitude.com/images/monuments.jpg",
+        "description": "",
+        "metrics": {
+            "surface_temp": "",
+            "sea_temp": "",
+            "precipitation": "",
+            "sun_duration": "",
+            "snow_thickness": "",
+            "cloud_coverage": ""
+        },
+        "matched": "false",
+        "seen": "false"
+    },
+    {
+        "location": "Oslo",
+        "image": "https://linkarkitektur.com/var/linkarkitektur/storage/images/prosjekter/context-oslo-hovinbyen/context-oslo-hovinbyen/356889-1-nor-NO/Context-Oslo-Hovinbyen_fp_proj_slide_img.jpg",
+        "description": "",
+        "metrics": {
+            "surface_temp": "",
+            "sea_temp": "",
+            "precipitation": "",
+            "sun_duration": "",
+            "snow_thickness": "",
+            "cloud_coverage": ""
+        },
+        "matched": "false",
+        "seen": "false"
+    },
+    {
+        "location": "London",
+        "image": "https://www.city.ac.uk/__data/assets/image/0009/328797/building-partnerships.jpg",
+        "description": "",
+        "metrics": {
+            "surface_temp": "",
+            "sea_temp": "",
+            "precipitation": "",
+            "sun_duration": "",
+            "snow_thickness": "",
+            "cloud_coverage": ""
+        },
+        "matched": "false",
+        "seen": "false"
+    }
+]
