@@ -34,13 +34,13 @@
                             <a href="#page-top"></a>
                         </li>
                         <li class="page-scroll">
-                            <a href="/">Discover</a>
+                            <a class="nav-link" href="/">Discover</a>
                         </li>
                         <li class="page-scroll">
-                            <a href="/matches">Matches</a>
+                            <a class="nav-link" href="/matches">Matches</a>
                         </li>
                         <li class="page-scroll">
-                            <a href="/settings">Preferences</a>
+                            <a class="nav-link" href="/settings">Preferences</a>
                         </li>
                     </ul>
                 </div>
@@ -49,31 +49,54 @@
             <!-- /.container-fluid -->
         </nav>
         
+      <div id="grey-square centered-col">
         <!-- Page Content -->
         <div class="container">
 
-            <!-- Portfolio Item Row -->
-            <div class="picture-switch row">
-                <div class="col-md-2 selector-image-container">
-                    <img class="selector-image" id="skip" src="static/images/red_cross.png" />
-                </div>
-                <div class="col-md-6">
-                    <img id="dest-image" class="img-responsive centered-col" alt="">
-                </div>
-                <div class="col-md-2 selector-image-container">
-                    <img class="selector-image" id="match" src="static/images/tick_green.png" />
-                </div>
+        <!-- Portfolio Item Row -->
+        <div class="picture-switch row">
+            <div class="col-md-2 selector-image-container">
+                <img class="selector-image" id="skip" src="static/images/red_cross.png" />
             </div>
-            <!-- /.row -->
-            <!-- Portfolio Item Row -->
-            <div class="row">
-                <div class="col-md-6 centered-col">
-                    <h3 id="location"></h3>
-                    <p id="description"></p>
-                </div>
+            <div class="col-md-9">
+                <img id="dest-image" class="img-responsive centered-col" alt="">
             </div>
+            <div class="col-md-2 selector-image-container">
+                <img class="selector-image" id="match" src="static/images/tick_green.png" />
+            </div>
+        </div>
+        <!-- /.row -->
+        <!-- Portfolio Item Row -->
+        <div class="row">
+            <div class="col-md-6 centered-col">
+                <h3 id="location"></h3>
+                <p id="description"></p>
+            </div>
+        </div>
+        <div class="row">
+            <table class="centered-col table table-bordered table-values" style="text-align:center;">
+              <tr>
+                <td id="temp">Surface Temperature (degrees C):</td>
+                <td id="temp_val"></td>
+              </tr>
+              <tr>
+                <td id="sea_temp">Sea Temperature (degrees C):</td>
+                <td id="sea_temp_val"></td>
+              </tr>
+              <tr>
+                <td id="cloud_coverage">Cloud Coverage (percentage):</td>
+                <td id="cloud_coverage_val"></td>
+              </tr>
+              <tr>
+                <td id="snow_thickness">Snow Thickness (metres):</td>
+                <td id="snow_thickness_val"></td>
+              </tr>
+            </table>
+        </div>
 
-            <!-- /.row -->
+        <!-- /.row -->
+      
+      </div>
 
             <!-- Footer -->
             <footer>
