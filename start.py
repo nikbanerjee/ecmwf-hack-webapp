@@ -6,11 +6,16 @@ import json
 import os
 
 app = Flask(__name__)
-#app.secret_key = "asdxccxvfddfgdfg"
+app.secret_key = "asdxccxvfddfgdfg"
 
 @app.route("/")
-def hello():
+def start():
+    with open('static/settings.json') as data_file:    
+        data = json.load(data_file)
+    if (data == {}):
+        return redirect("/settings")
     return render_template('index.html')
+    
     #return app.send_static_file('index.html')
     
 @app.route("/matches", methods=["GET", "POST"])
@@ -42,8 +47,12 @@ def destination():
             json.dump(dest_json, outfile, indent=4, sort_keys=True)
         return redirect("/")
     
+    precipitation = request.args.get('rainfall')
+    temp = request.args.get('heat')
+    snow_depth = request.args.get('snowfall')
     with open('static/destinations.json') as data_file:    
         data = json.load(data_file)
+    
     return jsonify(data)
     
     
@@ -55,14 +64,13 @@ def patch_destination(id):
         if json_key in request.get_json().keys():
             dest_json[id][json_key] = request.get_json()[json_key]
     with open("static/destinations.json", 'w') as outfile:
-        json.dump(dest_json, outfile, indent=4, sort_keys=True)        
+        json.dump(dest_json, outfile, indent=4, sort_keys=True)
     return redirect("/")
     
 
 @app.route("/settings", methods=["GET", "POST"])
 def settings():
     form = SettingsForm(request.form)
-    print("inside settings call")
     if request.method == "POST":#form.validate():#form.validate_on_submit(): # == 'POST': #and form.validate():
         surfaceTempField = form.surfaceTempField.data
         seaWaterTempField = form.seaWaterTempField.data
@@ -70,27 +78,36 @@ def settings():
         cloudCoverageField = form.cloudCoverageField.data
         sunDurationField = form.sunDurationField.data
         snowThicknessField = form.snowThicknessField.data
-
-        settingsString = "surfaceTempField: " + str(surfaceTempField) + "\n"
-        settingsString += "seaWaterTempField: " + str(seaWaterTempField) + "\n"
-        settingsString += "precipitationField: " + str(precipitationField) + "\n"
-        settingsString += "cloudCoverageField: " + str(cloudCoverageField) + "\n"
-        settingsString += "sunDurationField: " + str(sunDurationField) + "\n"
-        settingsString += "snowThicknessField: " + str(snowThicknessField)
-        print(settingsString)
-
-        scriptpath = os.path.dirname(__file__)
-        filename = os.path.join(scriptpath, 'settings.txt')
-
-        utils.write_file(filename, settingsString)
+        
+        settings_hash = {
+            "surfaceTempField": str(surfaceTempField),
+            "seaWaterTempField": str(seaWaterTempField),
+            "precipitationField": str(precipitationField),
+            "cloudCoverageField": str(cloudCoverageField),
+            "sunDurationField": str(sunDurationField),
+            "snowThicknessField": str(snowThicknessField)
+        }
+        
+        with open("static/settings.json", 'w') as outfile:
+            json.dump(settings_hash, outfile, indent=4, sort_keys=True)
+            
         flash("Settings saved.")
         return redirect('/')
+    
+    data_format = request.args.get('format')
+    if data_format == "json":
+        with open('static/settings.json') as data_file:    
+            data = json.load(data_file)
+        return jsonify(data)
+    else:
+        return render_template('settings.html', form=form)
 
-    print("render settings")
-    return render_template('settings.html', form=form)
+    
 
 if __name__ == "__main__":
     with open("static/matches.json", mode='w', encoding='utf-8') as f:
         json.dump([], f)
+    with open("static/settings.json", mode='w', encoding='utf-8') as f:
+        json.dump({}, f)
 #    copy("data/destination_base.json", "static/destinations.json")
     app.run(debug=True)

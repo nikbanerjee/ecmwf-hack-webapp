@@ -4,6 +4,26 @@ body {
   padding-top: 200px;
 }
 
+.picture-switch {
+  height: 70%;
+  display: flex;
+  justify-content: center;
+}
+
+.selector-image {
+  height: auto;
+  width: 200px;
+  max-width: 200px;
+  max-height: auto;
+}
+
+. selector-image-container {
+  height: auto;
+  width: 200px;
+  max-width: 200px;
+  max-height: auto;
+}
+
 .logo {
   max-width: 15%;
   max-height: auto;

@@ -15,6 +15,7 @@
     </head>
 
     <body>
+        
         <!-- Navigation -->
         <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
             <div class="container">
@@ -23,7 +24,7 @@
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                         <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                     </button>
-                    <img class="logo-img" src="static/images/logo.png" alt="HoliDeal Logo"/>
+                    <img class="logo-img" src="static/images/logo2.png" alt="HoliDeal Logo"/>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -47,20 +48,20 @@
             </div>
             <!-- /.container-fluid -->
         </nav>
-
+        
         <!-- Page Content -->
         <div class="container">
 
             <!-- Portfolio Item Row -->
-            <div class="row">
-                <div class="col-md-2" style="height:200px;width:200px;">
-                    <img id="skip" src="https://image.flaticon.com/icons/png/512/60/60775.png" style="height:100%;width:100%;" />
+            <div class="picture-switch row">
+                <div class="col-md-2 selector-image-container">
+                    <img class="selector-image" id="skip" src="static/images/red_cross.png" />
                 </div>
                 <div class="col-md-6">
                     <img id="dest-image" class="img-responsive centered-col" alt="">
                 </div>
-                <div class="col-md-2" style="height:200px;width:200px;">
-                    <img id="match" src="https://image.flaticon.com/icons/svg/60/60758.svg" style="height:100%;width:100%;" />
+                <div class="col-md-2 selector-image-container">
+                    <img class="selector-image" id="match" src="static/images/tick_green.png" />
                 </div>
             </div>
             <!-- /.row -->
@@ -71,7 +72,7 @@
                     <p id="description"></p>
                 </div>
             </div>
-            
+
             <!-- /.row -->
 
             <!-- Footer -->
