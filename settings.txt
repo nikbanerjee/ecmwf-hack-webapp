@@ -1,6 +1,6 @@
-54
-54
-54
-54
-54
-54
+surfaceTempField: 5
+seaWaterTempField: 5
+precipitationField: 3
+cloudCoverageField: 2
+sunDurationField: 3
+snowThicknessField:3

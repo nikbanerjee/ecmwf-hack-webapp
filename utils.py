@@ -11,8 +11,6 @@ from dateutil import parser
 
 import datetime
 import numpy as np
-import re
-import glob
 
 def write_file(file, data):
     with open(file, 'r+') as outfile:
